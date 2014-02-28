@@ -23,11 +23,12 @@
 (behavior ::eval-on-save
           :triggers #{:save}
           :reaction (fn [editor]
-                      (when (and (-> @editor :client :default)
-                                 (not (clients/placeholder? (-> @editor :client :default))))
-                        (object/raise html-lang :eval! {:origin editor
-                                                        :info (assoc (@editor :info)
-                                                                :code (ed/->val (:ed @editor)))}))))
+                      (when-let [default (-> @editor :client :default)]
+                        (if (or (not @default) (not (clients/placeholder? default)))
+                          (object/raise html-lang :eval!
+                                        {:origin editor
+                                         :info (assoc (@editor :info)
+                                                 :code (ed/->val (:ed @editor)))})))))
 
 (behavior ::eval!
           :triggers #{:eval!}
