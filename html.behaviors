@@ -1,4 +1,11 @@
-{:+ {:app [(:lt.objs.plugins/load-js ["codemirror/htmlmixed.js" "codemirror/htmlembedded.js" "html_compiled.js"])]
-     :editor.html [:lt.plugins.html/eval-on-save :lt.plugins.html/on-eval (:lt.objs.editor/tab-settings false 4 4)]
-     :files [(:lt.objs.files/file-types [{:name "HTML" :exts [:html :htm :shtml] :mime "htmlmixed" :tags [:editor.html]}])]
-     :html.lang [:lt.plugins.html/eval!]}}
+[
+ [:app :lt.objs.plugins/load-js ["codemirror/htmlmixed.js" "codemirror/htmlembedded.js" "html_compiled.js"]]
+
+ [:editor.html :lt.plugins.html/eval-on-save]
+ [:editor.html :lt.plugins.html/on-eval]
+ [:editor.html :lt.objs.editor/tab-settings false 4 4]
+
+ [:files :lt.objs.files/file-types [{:exts [:html :htm :shtml], :mime "htmlmixed", :tags [:editor.html], :name "HTML"}]]
+
+ [:html.lang :lt.plugins.html/eval!]
+]
