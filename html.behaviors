@@ -3,7 +3,6 @@
 
  [:editor.html :lt.plugins.html/eval-on-save]
  [:editor.html :lt.plugins.html/on-eval]
- [:editor.html :lt.objs.editor/tab-settings false 4 4]
 
  [:files :lt.objs.files/file-types [{:exts [:html :htm :shtml], :mime "htmlmixed", :tags [:editor.html], :name "HTML"}]]
 
