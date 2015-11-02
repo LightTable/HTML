@@ -2,6 +2,7 @@
  [:app :lt.objs.plugins/load-js ["codemirror/htmlmixed.js" "codemirror/htmlembedded.js" "html_compiled.js"]]
  [:app :lt.objs.editor/load-addon "edit/closetag.js"]
  [:app :lt.objs.editor/load-addon "edit/matchtags.js"]
+ [:app :lt.objs.plugins/load-keymap "html.keymap"]
 
  [:editor.html :lt.plugins.html/eval-on-save]
  [:editor.html :lt.plugins.html/on-eval]

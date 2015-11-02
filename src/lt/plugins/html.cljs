@@ -3,6 +3,8 @@
             [lt.objs.eval :as eval]
             [lt.objs.editor :as ed]
             [lt.objs.command :as cmd]
+            [lt.objs.editor :as editor]
+            [lt.objs.editor.pool :as pool]
             [lt.objs.clients :as clients]
             [lt.util.dom :refer [$ append]])
   (:require-macros [lt.macros :refer [behavior defui]]))
@@ -46,3 +48,14 @@
                 :triggers #{:eval!})
 
 (def html-lang (object/create ::html-lang))
+
+(cmd/command {:command :html.jump-to-matching-tag
+              :desc "HTML: Jump to matching tag"
+              :exec (fn []
+                      (let [cm (editor/->cm-ed (pool/last-active))
+                            _ (js/CodeMirror.commands.toMatchingTag cm)
+                            cursor (.getCursor cm)]
+                        ;; Decrement to keep cursor in tag and enable jumping back and forth between matching tags
+                        (set! (.-ch cursor) (dec (.-ch cursor)))
+                        ;; Unselect selection. Not a problem in CM demo
+                        (.setSelection cm cursor cursor)))})
